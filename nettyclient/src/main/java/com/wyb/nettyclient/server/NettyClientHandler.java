@@ -19,7 +19,7 @@ public class NettyClientHandler extends ChannelHandlerAdapter {
 	}
 
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10000; i++) {
 			ByteBuf firstMessage;
 			byte[] req = (new Random(100).nextInt()+"test ").getBytes();
 			firstMessage = Unpooled.buffer(req.length);
