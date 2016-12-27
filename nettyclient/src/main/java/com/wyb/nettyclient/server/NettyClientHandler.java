@@ -14,14 +14,15 @@ public class NettyClientHandler extends ChannelHandlerAdapter {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
-	public NettyClientHandler() {
+	private byte[] req;
 
+	public NettyClientHandler() {
+		req = ("this is a test." + new Random(100).nextInt() + System.getProperty("line.separator")).getBytes();
 	}
 
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-		for (int i = 0; i < 10000; i++) {
+		for (int i = 0; i < 100000; i++) {
 			ByteBuf firstMessage;
-			byte[] req = (new Random(100).nextInt()+"test ").getBytes();
 			firstMessage = Unpooled.buffer(req.length);
 			firstMessage.writeBytes(req);
 			ctx.writeAndFlush(firstMessage);
